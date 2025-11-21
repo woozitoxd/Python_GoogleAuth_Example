@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Subir foto</title>
+</head>
+<body>
+    <h1>Subir una nueva foto</h1>
+    <p>Hola {{ user.name }}, elegí una imagen para subir:</p>
+
+    {% if error %}
+        <p style="color:red;">Error: {{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p style="color:green;"> Archivo subido con éxito!</p>
+        <img src="{{ file_url }}" width="200"><br>
+    {% endif %}
+
+    <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Subir imagen</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('gallery') }}">Ver mi galería</a><br>
+    <a href="{{ url_for('profile') }}">Volver al perfil</a>
+</body>
+</html>

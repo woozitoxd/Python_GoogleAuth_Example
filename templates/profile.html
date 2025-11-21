@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil de {{ user.name }}</title>
+</head>
+<body>
+    <h1>Perfil de {{ user.name }}</h1>
+    <p>Email: {{ user.email }}</p>
+
+    {% if user.picture %}
+        <img src="{{ user.picture }}" alt="Foto de perfil" width="200">
+    {% else %}
+        <p>No tenés foto aún.</p>
+    {% endif %}
+
+    <br><br>
+    <a href="{{ url_for('upload_file') }}">Subir o cambiar foto</a><br>
+    <a href="{{ url_for('gallery') }}">Ver mis fotos subidas</a><br>
+
+    <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+</body>
+</html>

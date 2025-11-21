@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Galería de {{ user.name }}</title>
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galería de {{ user.name }}</h1>
+
+    {% if photos %}
+        <div class="gallery">
+            {% for photo in photos %}
+                <img src="{{ photo.url }}" alt="Foto subida">
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No subiste ninguna foto todavía xd</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('upload_file') }}">Subir nueva foto</a><br>
+    <a href="{{ url_for('profile') }}">Volver al perfil</a>
+</body>
+</html>
